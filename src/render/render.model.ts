@@ -8,3 +8,15 @@ export interface RenderDataModel {
 }
 
 export type SourceElementModel = HTMLElement;
+
+export enum RenderResult {
+    SUCCESS,
+    FAIL,
+    NOELEMENT
+}
+
+export enum DeleteResult {
+    SUCCESS,
+    FAIL,
+    NOELEMENT
+}
