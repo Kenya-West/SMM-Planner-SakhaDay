@@ -1,7 +1,7 @@
 {
-  "name": "userscript-typescript-template",
-  "version": "1.1.0",
-  "description": "Template repo using Webpack and TypeScript to build your userscript for Tampermonkey and more extensions.",
+  "name": "smm-planner-sakhaday",
+  "version": "0.0.1",
+  "description": "A script that enchances user experience for SakhaDay auto-posting projects",
   "main": "userscript/index.user.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,7 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/pboymt/userscript-typescript-template.git"
   },
-  "keywords": [],
+  "keywords": ["SakhaDay", "SMM Planner", "smm-planner", "smmplanner", "auto-posting"],
   "author": "",
   "license": "MIT",
   "bugs": {
@@ -35,10 +35,12 @@
   },
   "userscript": {
     "require-template": "https://cdn.jsdelivr.net/npm/${dependencyName}@${dependencyVersion}",
-    "namespace": "http://tampermonkey.net/",
+    "name": "SMM Planner - SakhaDay",
+    "version": "0.0.1",
+    "namespace": "https://smmplanner.com/",
     "license": "https://opensource.org/licenses/MIT",
     "match": [
-      "https://github.com*"
+      "https://smmplanner.com/*"
     ],
     "connect": [],
     "require": [],
