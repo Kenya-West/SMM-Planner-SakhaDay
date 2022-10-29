@@ -1,1 +1,2 @@
-export { AddPublics } from "./add-publics.action"
+export { AddPublics, AddPublicsModel } from "./add-publics.action"
+export { AddAllPublicsData as AddAllPublics } from "./add-publics.model"

@@ -1,22 +1,31 @@
 import { SourceElementModel } from "../render/render.model";
 
 export class ElementFind {
-    public getSingle(query: ElementCollection): SourceElementModel {
+
+    public contextElement: SourceElementModel;
+
+    constructor(contextElement: SourceElementModel = document as unknown as SourceElementModel) {
+        this.contextElement = contextElement;
+    }
+
+    public getSingle(query: ElementCollection | string): SourceElementModel {
         return this.getElementSingle(query);
     }
     public getMultiple(query: ElementCollection): Array<SourceElementModel> {
         return this.getElementMultiple(query);
     }
 
-    private getElementSingle(query: ElementCollection): SourceElementModel {
+    private getElementSingle(query: ElementCollection | string): SourceElementModel {
         if (query === ElementCollection.AddPageLabel) {
-            return document.querySelector(".viewport__content-section .modal-body .panel-group").parentNode.parentNode.querySelector(".control-label")
+            return this.contextElement.querySelector(".viewport__content-section .modal-body .panel-group").parentNode.parentNode.querySelector(".control-label")
         }
 
-        return document.querySelector(elementCollectionQueryMatcher[query]) as SourceElementModel;
+        const queryMapped = elementCollectionQueryMatcher[query as ElementCollection] ?? query;
+        return this.contextElement.querySelector(queryMapped as string) as SourceElementModel;
     }
-    private getElementMultiple(query: ElementCollection): Array<SourceElementModel> {
-        return Array.from(document.querySelectorAll(elementCollectionQueryMatcher[query])) as Array<SourceElementModel>;
+    private getElementMultiple(query: ElementCollection | string): Array<SourceElementModel> {
+        const queryMapped = elementCollectionQueryMatcher[query as ElementCollection] ?? query;
+        return Array.from(this.contextElement.querySelectorAll(queryMapped as string)) as Array<SourceElementModel>;
     }
 }
 
@@ -29,6 +38,10 @@ export enum ElementCollection {
     AddPageLabel,
     Panels,
     Buttons,
+    ButtonsAddAll,
+
+    // Modal dialog
+    ModalDialogOKButton
 }
 
 export const elementCollectionQueryMatcher: Record<ElementCollection, string> = {
@@ -40,4 +53,6 @@ export const elementCollectionQueryMatcher: Record<ElementCollection, string> = 
     [ElementCollection.AddPageLabel]: ".viewport__content-section .modal-body .panel-group",
     [ElementCollection.Panels]: ".viewport__content-section .modal-body .panel-group > .panel-default",
     [ElementCollection.Buttons]: ".viewport__content-section .modal-body .panel-group > .panel-default a[role='button']",
+    [ElementCollection.ButtonsAddAll]: ".viewport__content-section .modal-body .panel-group > .panel-default a[role='button'] a.pull-right",
+    [ElementCollection.ModalDialogOKButton]: "body.modal-open .modal-dialog .modal-content .modal-footer button.btn-primary",
 }

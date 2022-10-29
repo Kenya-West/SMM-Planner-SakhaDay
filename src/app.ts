@@ -1,4 +1,5 @@
 import { AddPublics } from "./actions/actions.module";
+import { AddAllPublicsData } from "./actions/add-publics.model";
 import { Button, ButtonIcons } from "./buttons/button";
 import { ElementFind } from "./element-find/element-find";
 import { elementCollection } from "./element-find/element-find.module";
@@ -21,7 +22,9 @@ export class App {
             classes: ["btn", "btn-default"],
             icon: ButtonIcons.glyphiconPicture,
             text: "Добавить все паблики"
-        }).element;
+        },
+        AddPublics.prototype.add,
+        AddAllPublicsData).element;
 
         const place = new ElementFind().getSingle(elementCollection.AddPageLabel);
 
