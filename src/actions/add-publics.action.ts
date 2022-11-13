@@ -11,26 +11,23 @@ export class AddPublics {
                 Array.from(publicNamesCollection).includes(panel.innerText.toLowerCase())
             );
 
-        function delay(t: number) {
+        function delay(t: number): Promise<void> {
             return new Promise(resolve => setTimeout(resolve, t));
         }
 
-        async function clickAddAllPublicsButton(panel: SourceElementModel) {
-                    (panel.querySelector("a[role='button'] a.pull-right") as HTMLElement).click();
-                    return Promise.resolve();
+        async function clickAddAllPublicsButton(panel: SourceElementModel): Promise<void> {
+            (panel.querySelector("a[role='button'] a.pull-right") as HTMLElement).click();
+            return Promise.resolve();
         }
-        async function clickModalDialogOKButton() {
-                    return new Promise(function() {
-                        setTimeout(() => {
-                            new ElementFind().getSingle(GetElementCollection.get(ElementCollection.ModalDialogOKButton)).click();
-                        }, 150);
-                    });
-                }
+        async function clickModalDialogOKButton(): Promise<void> {
+            new ElementFind().getSingle(GetElementCollection.get(ElementCollection.ModalDialogOKButton)).click();
+            return Promise.resolve();
+        }
 
         async function run() {
             for (let item of panels) {
                 await clickAddAllPublicsButton(item)
-                await delay(50);
+                await delay(150);
                 await clickModalDialogOKButton()
                 await delay(300);
             }
