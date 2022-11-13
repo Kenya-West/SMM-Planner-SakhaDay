@@ -8,12 +8,11 @@ export const elementShouldNotExistGuard = (selector: string) => (target: Object,
   descriptor.value = function (...args: any) {
     const url = new URL(location.href)
 
-    console.log("Проверка отсутствия элемента...");
-
     if (document.querySelector(selector) === null) {
-      console.log("Элемента нет... ОК");
+      console.log("Проверка отсутствия элемента... Элемента нет... ОК");
       originalMethod.apply(this, args);
     } else {
+        console.log("Проверка отсутствия элемента... Элемент есть... Плохо");
         return;
     }
   };
@@ -29,12 +28,11 @@ export const elementShouldExistGuard = (element: SourceElementModel) => (target:
   descriptor.value = function (...args: any) {
     const url = new URL(location.href)
 
-    console.log("Проверка наличия элемента...");
-
     if (element !== null) {
-      console.log("Элемент есть... ОК");
+      console.log("Проверка наличия элемента... Элемент есть... ОК");
       originalMethod.apply(this, args);
     } else {
+        console.log("Проверка наличия элемента... Элемента нет. Плохо");
         return;
     }
   };
