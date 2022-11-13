@@ -1,10 +1,10 @@
 import { AddPublics } from "./actions/actions.module";
 import { AddAllPublicsData } from "./actions/add-publics.model";
-import { Button, ButtonIcons } from "./buttons/button";
-import { ElementFind } from "./element-find/element-find";
-import { elementCollection } from "./element-find/element-find.module";
+import { Button, ButtonIcons } from "./buttons/buttons.module";
+import { ElementFind } from "./element-find/element-find.module";
+import { ElementCollection } from "./element-find/element-find.module";
 import { elementShouldNotExistGuard, elementShouldExistGuard, routeGuard } from "./guards/guards.module";
-import { RenderAt } from "./render/render.fabric";
+import { RenderAt } from "./render/render.module";
 import { Routes } from "./routing/routes";
 
 export class App {

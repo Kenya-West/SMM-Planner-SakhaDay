@@ -1,1 +1,1 @@
-export { ElementFind, ElementCollection as elementCollection, elementCollectionQueryMatcher } from "./element-find"
+export { ElementFind, ElementCollection, elementCollectionQueryMatcher } from "./element-find"
