@@ -103,7 +103,7 @@ const elementCollectionList: ElementCollectionModel[] =
 ]
 
 export class GetElementCollection {
-    public static get(element: ElementCollection): ElementCollectionModel {
-        return elementCollectionList.find((element) => element.id);
+    public static get(id: ElementCollection): ElementCollectionModel {
+        return elementCollectionList.find((element) => element.id === id);
     }
 }
