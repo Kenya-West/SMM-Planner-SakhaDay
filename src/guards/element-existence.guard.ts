@@ -1,6 +1,3 @@
-import { ElementCollection } from "../element-find/element-find.module";
-import { SourceElementModel } from "../render/render.model";
-
 export const elementShouldNotExistGuard = (selector: string) => (target: Object,
   propertyKey: string,
   descriptor: PropertyDescriptor) => {
