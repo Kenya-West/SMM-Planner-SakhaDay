@@ -8,24 +8,22 @@ export class ElementFind {
         this.contextElement = contextElement;
     }
 
-    public getSingle(query: ElementCollection | string): SourceElementModel {
+    public getSingle(query: ElementCollectionModel): SourceElementModel {
         return this.getElementSingle(query);
     }
-    public getMultiple(query: ElementCollection): Array<SourceElementModel> {
+    public getMultiple(query: ElementCollectionModel): SourceElementModel[] {
         return this.getElementMultiple(query);
     }
 
-    private getElementSingle(query: ElementCollection | string): SourceElementModel {
-        if (query === ElementCollection.AddPageLabel) {
+    private getElementSingle(query: ElementCollectionModel): SourceElementModel {
+        if (query.id === ElementCollection.AddPageLabel) {
             return this.contextElement.querySelector(".viewport__content-section .modal-body .panel-group").parentNode.parentNode.querySelector(".control-label")
         }
 
-        const queryMapped = elementCollectionQueryMatcher[query as ElementCollection] ?? query;
-        return this.contextElement.querySelector(queryMapped as string) as SourceElementModel;
+        return this.contextElement.querySelector(query.selector) as SourceElementModel;
     }
-    private getElementMultiple(query: ElementCollection | string): Array<SourceElementModel> {
-        const queryMapped = elementCollectionQueryMatcher[query as ElementCollection] ?? query;
-        return Array.from(this.contextElement.querySelectorAll(queryMapped as string)) as Array<SourceElementModel>;
+    private getElementMultiple(query: ElementCollectionModel): SourceElementModel[] {
+        return Array.from(this.contextElement.querySelectorAll(query.selector));
     }
 }
 
@@ -44,15 +42,68 @@ export enum ElementCollection {
     ModalDialogOKButton
 }
 
-export const elementCollectionQueryMatcher: Record<ElementCollection, string> = {
-    [ElementCollection.Root]: "iframe[src='iframe/app/#/postproject']",
-    [ElementCollection.Modal]: ".viewport__content-section",
-    [ElementCollection.ModalBody]: ".viewport__content-section .modal-body",
-    [ElementCollection.Form]: ".viewport__content-section .modal-body form[role='form']",
-    [ElementCollection.PanelGroup]: ".viewport__content-section .modal-body .panel-group",
-    [ElementCollection.AddPageLabel]: ".viewport__content-section .modal-body .panel-group",
-    [ElementCollection.Panels]: ".viewport__content-section .modal-body .panel-group > .panel-default",
-    [ElementCollection.Buttons]: ".viewport__content-section .modal-body .panel-group > .panel-default a[role='button']",
-    [ElementCollection.ButtonsAddAll]: ".viewport__content-section .modal-body .panel-group > .panel-default a[role='button'] a.pull-right",
-    [ElementCollection.ModalDialogOKButton]: "body.modal-open .modal-dialog .modal-content .modal-footer button.btn-primary",
+interface ElementCollectionModel {
+    id: ElementCollection;
+    selector: string;
+    preferredMode: "selectSingle" | "selectMultiple";
+}
+
+const elementCollectionList: ElementCollectionModel[] =
+[
+    {
+        id: ElementCollection.Root,
+        selector: "iframe[src='iframe/app/#/postproject']",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.Modal,
+        selector: ".viewport__content-section",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.ModalBody,
+        selector: ".viewport__content-section .modal-body",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.Form,
+        selector: ".viewport__content-section .modal-body form[role='form']",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.PanelGroup,
+        selector: ".viewport__content-section .modal-body .panel-group",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.AddPageLabel,
+        selector: ".viewport__content-section .modal-body .panel-group",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.Panels,
+        selector: ".viewport__content-section .modal-body .panel-group > .panel-default",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.Buttons,
+        selector: ".viewport__content-section .modal-body .panel-group > .panel-default a[role='button']",
+        preferredMode: "selectMultiple"
+    },
+    {
+        id: ElementCollection.ButtonsAddAll,
+        selector: ".viewport__content-section .modal-body .panel-group > .panel-default a[role='button'] a.pull-right",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.ModalDialogOKButton,
+        selector: "body.modal-open .modal-dialog .modal-content .modal-footer button.btn-primary",
+        preferredMode: "selectSingle"
+    },
+]
+
+export class GetElementCollection {
+    public static get(element: ElementCollection): ElementCollectionModel {
+        return elementCollectionList.find((element) => element.id);
+    }
 }

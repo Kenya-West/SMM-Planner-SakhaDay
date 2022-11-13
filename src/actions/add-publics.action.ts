@@ -1,4 +1,4 @@
-import { ElementCollection, ElementFind } from "../element-find/element-find"
+import { ElementCollection, ElementFind, GetElementCollection } from "../element-find/element-find"
 import { SourceElementModel } from "../render/render.model";
 
 export class AddPublics {
@@ -6,7 +6,7 @@ export class AddPublics {
         const publicNamesCollection = new Set(); // get unique public name to filter panels below
         publics.forEach((publicName) => publicNamesCollection.add(publicName.publicName));
 
-        const panels = new ElementFind().getMultiple(ElementCollection.Buttons)
+        const panels = new ElementFind().getMultiple(GetElementCollection.get(ElementCollection.Buttons))
             .filter((panel) =>
                 Array.from(publicNamesCollection).includes(panel.innerText.toLowerCase())
             );
@@ -16,13 +16,13 @@ export class AddPublics {
         }
 
         async function clickAddAllPublicsButton(panel: SourceElementModel) {
-                    new ElementFind(panel).getSingle("a[role='button'] a.pull-right").click();
+                    (panel.querySelector("a[role='button'] a.pull-right") as HTMLElement).click();
                     return Promise.resolve();
         }
         async function clickModalDialogOKButton() {
                     return new Promise(function() {
                         setTimeout(() => {
-                            new ElementFind().getSingle(ElementCollection.ModalDialogOKButton).click();
+                            new ElementFind().getSingle(GetElementCollection.get(ElementCollection.ModalDialogOKButton)).click();
                         }, 150);
                     });
                 }
@@ -37,24 +37,6 @@ export class AddPublics {
         }
 
         run();
-
-            // .forEach(async (panel) => {
-            //     await clickAddAllPublicsButton();
-            //     await clickModalDialogOKButton();
-
-            //     async function clickModalDialogOKButton() {
-            //         return new Promise(function() {
-            //             setTimeout(() => {
-            //                 new ElementFind().getSingle(ElementCollection.ModalDialogOKButton).click();
-            //             }, 150);
-            //         });
-            //     }
-
-            //     async function clickAddAllPublicsButton() {
-            //         new ElementFind(panel).getSingle("a[role='button'] a.pull-right").click();
-            //         return Promise.resolve();
-            //     }
-            // })
     }
 }
 

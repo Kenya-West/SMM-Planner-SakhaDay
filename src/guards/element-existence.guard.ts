@@ -1,3 +1,4 @@
+import { ElementCollection } from "../element-find/element-find.module";
 import { SourceElementModel } from "../render/render.model";
 
 export const elementShouldNotExistGuard = (selector: string) => (target: Object,
@@ -20,15 +21,13 @@ export const elementShouldNotExistGuard = (selector: string) => (target: Object,
   return descriptor;
 };
 
-export const elementShouldExistGuard = (element: SourceElementModel) => (target: Object,
+export const elementShouldExistGuard = (selector: string) => (target: Object,
   propertyKey: string,
   descriptor: PropertyDescriptor) => {
   const originalMethod = descriptor.value;
 
   descriptor.value = function (...args: any) {
-    const url = new URL(location.href)
-
-    if (element !== null) {
+    if (document.querySelector(selector) !== null) {
       console.log("Проверка наличия элемента... Элемент есть... ОК");
       originalMethod.apply(this, args);
     } else {
