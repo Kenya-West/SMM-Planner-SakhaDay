@@ -39,7 +39,13 @@ export enum ElementCollection {
     ButtonsAddAll,
 
     // Modal dialog
-    ModalDialogOKButton
+    ModalDialogOKButton,
+
+    // Typograph host
+    TypographHost,
+
+    // Editor textarea
+    Editor
 }
 
 interface ElementCollectionModel {
@@ -98,6 +104,16 @@ const elementCollectionList: ElementCollectionModel[] =
     {
         id: ElementCollection.ModalDialogOKButton,
         selector: "body.modal-open .modal-dialog .modal-content .modal-footer button.btn-primary",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.TypographHost,
+        selector: ".viewport__content-section .modal-body form[role='form'] > .form-group.emoji-group > div:nth-child(4)",
+        preferredMode: "selectSingle"
+    },
+    {
+        id: ElementCollection.Editor,
+        selector: ".viewport__content-section .modal-body form[role='form'] .emoji-wysiwyg-editor",
         preferredMode: "selectSingle"
     },
 ]

@@ -23,7 +23,7 @@ export function AddButtons() {
             icon: ButtonIcons.none,
             text: "Исправить текст"
         },
-        FixText.prototype.fix,
+        FixText.fix,
         null).element;
 
     place = new ElementFind().getSingle(GetElementCollection.get(ElementCollection.TypographHost));
