@@ -6,6 +6,7 @@ export class FixText {
 
         let text = FixText.fixQuotes(editor.innerText);
         text = FixText.fixBannedOrgs(text);
+        text = FixText.fixInsufficientParagraphs(text);
 
         editor.innerText = text;
     }
@@ -47,6 +48,14 @@ export class FixText {
                 textModified += "\n\n\* соцсеть запрещена в РФ и признана экстремистской"
             }
         }
+
+        return textModified;
+    }
+
+    private static fixInsufficientParagraphs(text: string): string {
+        let textModified = text;
+
+        textModified = textModified.replace(/(.)\n(.)/gi, "$1\n\n$2");
 
         return textModified;
     }
