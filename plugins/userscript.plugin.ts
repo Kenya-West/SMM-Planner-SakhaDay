@@ -52,7 +52,7 @@ interface PackageJsonOptions {
 
 /**
  * Generate a userscript's headers from "package.json" file.
- * 
+ *
  * @returns {string} Return userscript's header.
  */
 export function generateHeader() {
@@ -67,7 +67,7 @@ export function generateHeader() {
     const headers = ['// ==UserScript=='];
 
     /**
-     * Add userscript header's name. 
+     * Add userscript header's name.
      * If the name is not set, the package name is used. If neither is set, an error is thrown.
      */
     if (packageJson.name || userscript.name) {
@@ -76,7 +76,7 @@ export function generateHeader() {
         throw new Error('No name specified in package.json');
     }
     /**
-     * Add userscript header's version. 
+     * Add userscript header's version.
      * If the version is not set, the package version is used. If neither is set, an error is thrown.
      */
     if (packageJson.version || userscript.version) {
@@ -156,9 +156,9 @@ export function generateHeader() {
     }
     /**
      * Add userscript header's requires.
-     * The package name and version will be obtained from the "dependencies" field, 
+     * The package name and version will be obtained from the "dependencies" field,
      * and the jsdelivr link will be generated automatically.
-     * You can also set the string template with the parameters "{dependencyName}" and "{dependencyVersion}" 
+     * You can also set the string template with the parameters "{dependencyName}" and "{dependencyVersion}"
      * in the "require-template" field of the "userscript" object in the "package.json" file.
      */
     if (packageJson.dependencies) {
