@@ -36,7 +36,6 @@
   "userscript": {
     "require-template": "https://cdn.jsdelivr.net/npm/${dependencyName}@${dependencyVersion}",
     "name": "SMM Planner - SakhaDay",
-    "version": "0.0.1",
     "namespace": "https://smmplanner.com/",
     "license": "https://opensource.org/licenses/MIT",
     "match": [
