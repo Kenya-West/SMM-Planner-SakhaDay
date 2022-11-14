@@ -1,7 +1,7 @@
 {
   "name": "smm-planner-sakhaday",
   "version": "0.0.2",
-  "description": "A script that enchances user experience for SakhaDay auto-posting projects",
+  "description": "This is a little text enhancer for SMM Planner dashboard. Preferably for Cyrillic text style rules.",
   "main": "userscript/index.user.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
