@@ -1,6 +1,6 @@
 {
   "name": "smm-planner-sakhaday",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This is a little text enhancer for SMM Planner dashboard. Preferably for Cyrillic text style rules.",
   "main": "userscript/index.user.js",
   "scripts": {
