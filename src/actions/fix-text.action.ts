@@ -7,6 +7,8 @@ export class FixText {
         let text = FixText.fixQuotes(editor.innerText);
         text = FixText.fixBannedOrgs(text);
         text = FixText.fixInsufficientParagraphs(text);
+        text = FixText.fixE(text);
+        text = FixText.fixDash(text);
 
         editor.innerText = text;
     }
@@ -56,6 +58,23 @@ export class FixText {
         let textModified = text;
 
         textModified = textModified.replace(/(.)\n(.)/gi, "$1\n\n$2");
+
+        return textModified;
+    }
+
+    private static fixE(text: string): string {
+        let textModified = text;
+
+        textModified = textModified.replace(/(.)ё(.)/g, "$1е$2");
+        textModified = textModified.replace(/(.)Ё(.)/g, "$1Е$2");
+
+        return textModified;
+    }
+
+    private static fixDash(text: string): string {
+        let textModified = text;
+
+        textModified = textModified.replace(/(\s|^|\n|\(|\[|\{|\.|\,|\?|\!|\:|\;)\-(\s|^|\n|\(|\[|\{|\.|\,|\?|\!|\:|\;)/gi, "$1—$2");
 
         return textModified;
     }
