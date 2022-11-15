@@ -75,6 +75,7 @@ export class FixText {
         let textModified = text;
 
         textModified = textModified.replace(/(\s|^|\n|\(|\[|\{|\.|\,|\?|\!|\:|\;)\-(\s|^|\n|\(|\[|\{|\.|\,|\?|\!|\:|\;)/gi, "$1—$2");
+        textModified = textModified.replace(/(\s|^|\n|\(|\[|\{|\.|\,|\?|\!|\:|\;)\–(\s|^|\n|\(|\[|\{|\.|\,|\?|\!|\:|\;)/gi, "$1—$2");
 
         return textModified;
     }
