@@ -1,46 +1,31 @@
-# userscript-typescript-template
+## SMM Planner - SakhaDay
 
-Template repo using Webpack and TypeScript to build your userscript for Tampermonkey and more extensions.
+### Description
 
-Automatically generate headers from your package.json!
+This is a little text enhancer for SMM Planner dashboard. Preferably for Cyrillic text style rules. Based on [userscript-typescript-template](https://github.com/pboymt/userscript-typescript-template)
 
-## Usage
+### Functions
+- Changes quotes
+- Fixes insufficient new line break to more clear paragraphs
+- "Add all publics" button
 
-### 1. Generate repostiory (two-ways)
+### Lint style fixing:
+1. Replace `""` with `«»`
+2. Replace `-` and `–` to `—`, ignore `-` between letters
+3. Replace `\n` to `\n\n`
+4. Replace `\s\s` to `\s` between words
 
-#### - Use this template to create your new repository
+### How to download
 
-![](./images/github-use-template.png)
+1. You should have **Tampermonkey**
+2. Go to [GreasyFork](https://greasyfork.org/ru/scripts/454780) and click **Install**
 
-#### - Clone this repository
+### How to contribute
 
-```bash
-# Use Github CLI
-$ gh repo clone pboymt/userscript-typescript-template
-# Or use 'git clone' command directly
-$ git clone https://github.com/pboymt/userscript-typescript-template.git
-```
+1. `git clone https://github.com/pboymt/userscript-typescript-template`
+2. And then change stuff
 
-### Development
+**DISCLAIMER**! Author isn't affiliated with SMM Planner.
 
-1. Install dependencies with `npm install` or `npm ci`.
-2. Edit settings in `userscript` object in [`package.json`](./package.json), you can refer to the comments in [`plugins/userscript.plugin.ts`](./plugins/userscript.plugin.ts).
-3. Code your userscript in `src` directory (like [`src/index.ts`](./src/index.ts)).
-4. Generate userscript with `npm run build`.
-5. Import generated userscript to Tampermonkey by local file URI.
-
-### Compile other file types
-
-You need install other loader plugins to support other file types.
-
-For example, you can use `scss-loader` to compile `.scss` files. Install it with `npm install --save-dev scss-loader node-sass` and add it in [`webpack.config.ts`](./webpack.config.ts).
-
-### Debug
-
-Allow Tampermonkey's access to local file URIs ([Tampermonkey FAQs](https://tampermonkey.net/faq.php?ext=dhdg#Q204)) and import built userscript's file URL. 
-
-### Publish you userscript
-
-You can publish your userscript to [Greasy Fork](https://greasyfork.org/) or other websites.
-
-You can push your userscript to [Github](https://github.com) and import it to [Greasy Fork](https://greasyfork.org/import).
+*For personal use only*
+*Author doesn't guarantee if there will be some consequences after/before using/contributing*
