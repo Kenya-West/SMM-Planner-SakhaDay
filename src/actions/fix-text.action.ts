@@ -43,11 +43,13 @@ export class FixText {
         if (isMentioned) {
             const capturedGroups = regex.exec(textModified);
 
-            // on just one word it doesn't have a "$3*"
-            textModified = textModified.replace(regex, replaceCondition(capturedGroups));
+            if (capturedGroups) {
+                // on just one word it doesn't have a "$3*"
+                textModified = textModified.replace(regex, replaceCondition(capturedGroups));
 
-            if (!textModified.match(/\* соцсеть запрещена в РФ и признана экстремистской(\.|$|\n)/gi)) {
-                textModified += "\n\n\* соцсеть запрещена в РФ и признана экстремистской"
+                if (!textModified.match(/\* соцсеть запрещена в РФ и признана экстремистской(\.|$|\n)/gi)) {
+                    textModified += "\n\n\* соцсеть запрещена в РФ и признана экстремистской"
+                }
             }
         }
 
